@@ -115,7 +115,7 @@ if __name__ == '__main__':
 
     path = extract_path(agent, start, goal)
 
-    if path == False:
+    if not path:
         print("无法到达终点")
     else:
         # 将路径标记在迷宫上，用数字2表示起点，数字3表示终点，数字4表示路径
