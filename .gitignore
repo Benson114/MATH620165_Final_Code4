@@ -1,0 +1,11 @@
+**/__pycache__
+.idea/
+
+model/*
+!model/.gitkeep
+
+res/*
+!model/maze-2.jpg
+!model/maze.txt
+
+/*.zip
