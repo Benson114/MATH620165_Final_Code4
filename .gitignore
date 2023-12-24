@@ -6,6 +6,8 @@ model/*
 
 res/*
 !res/maze-2.jpg
+!res/maze.jpg
 !res/maze.txt
+!res/51-41.jpg
 
 /*.zip

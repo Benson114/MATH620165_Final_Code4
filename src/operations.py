@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
+
 # 迷宫数据储存在maze.txt中
 # 每个迷宫格子用数字表示：0=路，1=墙
 # 迷宫格子之间的分隔符是空格
@@ -9,6 +10,7 @@ from PIL import Image
 # 设定左上角为原点(0,0)，x轴向右，y轴向下
 # 超出迷宫范围的格子，设定为墙
 
+# 读取迷宫数据
 def read_maze():
     maze = []
     with open('./res/maze.txt', 'r') as f:
@@ -17,6 +19,8 @@ def read_maze():
     maze = np.array(maze).astype(int)
     return maze
 
+
+# 用于绘制、保存迷宫图像
 def draw_maze(maze):
     # 读取迷宫图像
     img = Image.open('./res/maze-2.jpg')
@@ -27,19 +31,19 @@ def draw_maze(maze):
         for j in range(65):
             if maze[i, j] == 1:
                 # 墙用白色表示
-                img_array[47+i*8:47+(i+1)*8, 49+j*8:49+(j+1)*8] = 255
+                img_array[47 + i * 8:47 + (i + 1) * 8, 49 + j * 8:49 + (j + 1) * 8] = 255
             elif maze[i, j] == 0:
                 # 路用黑色表示
-                img_array[47+i*8:47+(i+1)*8, 49+j*8:49+(j+1)*8] = 0
+                img_array[47 + i * 8:47 + (i + 1) * 8, 49 + j * 8:49 + (j + 1) * 8] = 0
             elif maze[i, j] == 2:
                 # 起点用黄色表示
-                img_array[47+i*8:47+(i+1)*8, 49+j*8:49+(j+1)*8] = [255, 255, 0]
+                img_array[47 + i * 8:47 + (i + 1) * 8, 49 + j * 8:49 + (j + 1) * 8] = [255, 255, 0]
             elif maze[i, j] == 3:
                 # 终点用红色表示
-                img_array[47+i*8:47+(i+1)*8, 49+j*8:49+(j+1)*8] = [255, 0, 0]
+                img_array[47 + i * 8:47 + (i + 1) * 8, 49 + j * 8:49 + (j + 1) * 8] = [255, 0, 0]
             elif maze[i, j] == 4:
                 # 路径用绿色表示
-                img_array[47+i*8:47+(i+1)*8, 49+j*8:49+(j+1)*8] = [0, 255, 0]
+                img_array[47 + i * 8:47 + (i + 1) * 8, 49 + j * 8:49 + (j + 1) * 8] = [0, 255, 0]
     img = Image.fromarray(img_array)
 
     # 保存图像
@@ -49,6 +53,8 @@ def draw_maze(maze):
     plt.imshow(img)
     plt.show()
 
+
+# 用于将坐标转换为状态索引，将状态索引转换为坐标
 def hash(maze):
     state2id = {}
     id2state = {}

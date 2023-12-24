@@ -19,6 +19,7 @@ train_kwargs = {"alpha": 0.1, "gamma": 0.9, "epsilon": 0.9}
 # 设定训练的总回合数和每回合的最大步数
 total_episodes, max_steps = 100000, 1000
 
+
 def train(goal):
     # 初始化环境和智能体
     env = MazeEnv(maze=maze, start=start, goal=goal)
@@ -50,7 +51,6 @@ def train(goal):
         # 可选：减少探索率
         agent.epsilon = max(agent.epsilon * 0.99, 0.1)
 
-
     # 设定Q表的路径
     path = f"./model/{goal[0]}-{goal[1]}.pkl"
 
@@ -60,11 +60,12 @@ def train(goal):
 
     return agent
 
+
 def extract_path(agent, start, goal):
     # 如果起点和终点相同，直接返回起点
     if start == goal:
         return [start]
-    
+
     # 如果终点位置是墙，返回False
     if maze[goal[1], goal[0]] == 1:
         return False
@@ -91,6 +92,7 @@ def extract_path(agent, start, goal):
 
     return False  # 如果未能到达终点，返回无效路径标识
 
+
 if __name__ == '__main__':
     goal = input("请输入终点坐标，用空格分隔：")
     goal = tuple(map(int, goal.split()))
@@ -110,7 +112,7 @@ if __name__ == '__main__':
             **train_kwargs
         )
         agent.load(q_table_path)
-        
+
     path = extract_path(agent, start, goal)
 
     if path == False:
@@ -125,4 +127,3 @@ if __name__ == '__main__':
 
         # 保存迷宫图像
         draw_maze(maze_with_path)
-    

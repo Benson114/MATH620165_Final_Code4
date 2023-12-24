@@ -1,6 +1,7 @@
 import pickle
 import numpy as np
 
+
 class QLearningAgent:
     # 初始化Q表
     def __init__(self, state_space_size, action_space_size, alpha, gamma, epsilon):
@@ -41,7 +42,7 @@ class QLearningAgent:
         except FileNotFoundError:
             print("Q-table file not found.")
             return
-        
+
         with open(path, 'rb') as f:
             self.q_table = pickle.load(f)
             f.close()
