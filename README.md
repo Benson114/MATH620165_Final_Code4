@@ -41,6 +41,12 @@ python main.py
 
 ​	`QLearningAgent.py`：Q 学习智能体类
 
+`utils.py`：用于存放一些工具函数
+
+​	`parse.py`：用于将迷宫图像解析为数组
+
+​	`dfs.py`：用于判断某一指定终点的连通性（使用深度优先搜索算法）
+
 ## TODO
 
 可能可以优化一下参数等
