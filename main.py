@@ -17,7 +17,7 @@ state2id, id2state = hash(maze)
 train_kwargs = {"alpha": 0.1, "gamma": 0.9, "epsilon": 0.9}
 
 # 设定训练的总回合数和每回合的最大步数
-total_episodes, max_steps = 100000, 2000
+total_episodes, max_steps = 10000, 1000
 
 
 def train(goal):
