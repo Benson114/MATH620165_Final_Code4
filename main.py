@@ -117,6 +117,13 @@ if __name__ == '__main__':
 
     if not path:
         print("无法到达终点")
+        # 将起点和终点标记在迷宫上，用数字2表示起点，数字3表示终点
+        maze_with_path = maze.copy()
+        maze_with_path[start[1], start[0]] = 2
+        maze_with_path[goal[1], goal[0]] = 3
+
+        # 保存迷宫图像
+        draw_maze(maze_with_path)
     else:
         # 将路径标记在迷宫上，用数字2表示起点，数字3表示终点，数字4表示路径
         maze_with_path = maze.copy()
