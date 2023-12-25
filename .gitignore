@@ -5,6 +5,8 @@ model/*
 !model/.gitkeep
 
 res/*
+!res/.gitkeep
+!res/maze-1.jpg
 !res/maze-2.jpg
 !res/maze.jpg
 !res/maze.txt
