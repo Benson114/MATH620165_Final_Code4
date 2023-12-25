@@ -62,14 +62,6 @@ def train(goal):
 
 
 def extract_path(agent, start, goal):
-    # 如果起点和终点相同，直接返回起点
-    if start == goal:
-        return [start]
-
-    # 如果终点位置是墙，返回False
-    if maze[goal[1], goal[0]] == 1:
-        return False
-
     # 初始化环境
     env = MazeEnv(maze=maze, start=start, goal=goal)
     state = env.reset()
@@ -97,6 +89,20 @@ if __name__ == '__main__':
     goal = input("请输入终点坐标，用空格分隔：")
     goal = tuple(map(int, goal.split()))
 
+    # 起点和终点相同
+    if start == goal:
+        print("起点和终点相同")
+        exit()
+
+    # 终点位置是墙
+    elif maze[goal[1], goal[0]] == 1:
+        print("终点位置是墙，无法到达")
+        maze_with_path = maze.copy()
+        maze_with_path[start[1], start[0]] = 2
+        maze_with_path[goal[1], goal[0]] = 3
+        draw_maze(maze_with_path)
+        exit()
+
     q_table_path = f"./model/{goal[0]}-{goal[1]}.pkl"
 
     try:
@@ -121,7 +127,6 @@ if __name__ == '__main__':
         maze_with_path = maze.copy()
         maze_with_path[start[1], start[0]] = 2
         maze_with_path[goal[1], goal[0]] = 3
-
         # 保存迷宫图像
         draw_maze(maze_with_path)
     else:
@@ -131,6 +136,5 @@ if __name__ == '__main__':
             maze_with_path[point[1], point[0]] = 4
         maze_with_path[start[1], start[0]] = 2
         maze_with_path[goal[1], goal[0]] = 3
-
         # 保存迷宫图像
         draw_maze(maze_with_path)

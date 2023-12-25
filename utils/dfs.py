@@ -5,7 +5,9 @@ maze = read_maze()
 
 # 给定两个坐标，判断它们在迷宫上的连通性
 start = (63, 44)
-goal = (1, 0)
+
+
+# goal = (1, 1)
 
 # 使用深度优先搜索算法
 # 坐标的表示方法是(x, y)，x表示列，y表示行
@@ -31,17 +33,25 @@ def dfs(maze, start, goal):
 
         # 检查上下左右四个方向的坐标
         # 如果某个方向的坐标没有被访问过，且不是墙，就把它加入栈中
-        if y > 0 and visited[y-1, x] == 0 and maze[y-1, x] == 0:
-            stack.append((x, y-1))
-        if y < maze.shape[0] - 1 and visited[y+1, x] == 0 and maze[y+1, x] == 0:
-            stack.append((x, y+1))
-        if x > 0 and visited[y, x-1] == 0 and maze[y, x-1] == 0:
-            stack.append((x-1, y))
-        if x < maze.shape[1] - 1 and visited[y, x+1] == 0 and maze[y, x+1] == 0:
-            stack.append((x+1, y))
+        if y > 0 and visited[y - 1, x] == 0 and maze[y - 1, x] == 0:
+            stack.append((x, y - 1))
+        if y < maze.shape[0] - 1 and visited[y + 1, x] == 0 and maze[y + 1, x] == 0:
+            stack.append((x, y + 1))
+        if x > 0 and visited[y, x - 1] == 0 and maze[y, x - 1] == 0:
+            stack.append((x - 1, y))
+        if x < maze.shape[1] - 1 and visited[y, x + 1] == 0 and maze[y, x + 1] == 0:
+            stack.append((x + 1, y))
 
     # 如果栈空了还没有返回，说明搜索失败
     return False
 
+
 if __name__ == "__main__":
-    print(dfs(maze, start, goal))
+    # print(dfs(maze, start, goal))
+    # 找出一个不连通的坐标（结果：没找到）
+    for i in range(maze.shape[0]):
+        for j in range(maze.shape[1]):
+            if maze[i, j] == 0:
+                is_connected = dfs(maze, start, (j, i))
+                if not is_connected:
+                    print(f"({j}, {i}) is not connected to start ({start[0]}, {start[1]}).")
